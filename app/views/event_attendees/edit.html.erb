@@ -1,0 +1,19 @@
+<% if @attendee.errors.any? %>
+	<% @attendee.errors.full_messages.each do |error| %>
+		<p>
+			<%= error %>
+		</p>
+	<% end %>
+<% end %>
+
+<%= form_for @attendee,:url=>event_attendee_path(@event, @attendee), :method=>"put" do |f|%>
+	<p>
+		<%= f.label :name %>
+	</p>
+	<p>
+		<%= f.text_field :name %>
+	</p>
+	
+	<%= f.submit "update", :class=>"btn btn-primary" %>
+	<%= button_tag "Cancel", type: :reset, :class=>"btn btn-default" %>
+<% end %>

@@ -1,0 +1,13 @@
+<p><%= @event.name %></p>
+<p><%= @event.description %></p>
+
+<p><%= @event.category.try("name") %></p>
+
+<% @event.groups.order("id").each do |group| %>
+	<p>group:
+		<%= group.name %>
+	</p>
+<% end %>
+
+<p>status : <%= @event.status %></p>
+<%=link_to :back, events_path %>

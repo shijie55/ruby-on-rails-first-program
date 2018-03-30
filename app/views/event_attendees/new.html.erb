@@ -1,0 +1,13 @@
+<%= form_for @attendee, :url=>event_attendees_path(@event) do |f| %>
+	<p>
+		<%= f.label :name %>
+	</p>
+	<p>
+		<%= f.text_field :name %>
+	</p>
+	<p>
+		<%= f.submit "create", :class=>"btn btn-primary" %>
+		<%= button_tag "Cancel", type: :reset, :class=>"btn btn-default" %>
+	</p>
+
+<% end %>

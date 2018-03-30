@@ -1,0 +1,35 @@
+<%= link_to "admin", admin_events_path() %>
+
+<%= form_tag events_path, :method=>"get" do %>
+	<%= text_field_tag "keyword" %>
+	<%= submit_tag "Search" %>
+<% end %>
+
+<%= form_tag bulk_update_events_path() do %>
+	<p style="margin-top: 10px">
+		<%= link_to "order by name", events_path(:order => "name"), :class=>"btn btn-default" %>
+		<%= link_to "order by id", events_path(), :class=>"btn btn-default" %>
+	</p>
+	<table class="table">
+	<% @events.each do |event| %>
+	  	<tr>
+		  	<td>
+		  	  <%= check_box_tag "ids[]", event.id, false %>
+		 	  <%= event.name %>
+		 	</td>
+		 	<td>
+			  <%= link_to 'Show', event_path(event), :class=>"btn btn-primary" %>
+			  <%= link_to 'Edit', edit_event_path(event), :class=>"btn btn-default"%>
+			  <%= link_to 'Delete', event_path(event),:class=>"btn btn-danger", :method => "Delete", :data =>{:confirm => 'Are You Ok?'} %>
+			  <%= link_to 'attendees', event_attendees_path(event), :class=>"btn btn-primary" %>
+			</td>
+		</tr>
+	<% end %>
+	</table>
+	<p>
+		<%= link_to 'New Event', new_event_path ,:class=>"btn btn-primary"%>
+	</p>
+	<%= submit_tag "Delete" , :class=>"btn btn-danger" %>
+	<%= submit_tag "Update" , :class=>"btn btn-default" %>
+
+<% end %>

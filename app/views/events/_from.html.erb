@@ -1,0 +1,30 @@
+<p>
+<%= f.label :name , "NICE" %>
+</p>
+<p>
+<%= f.text_field :name %>
+</p>
+<p>
+<%= f.label :description, "TO MEET YOU" %>
+</p>
+<p>
+<%= f.text_area :description %>
+</p>
+
+<p>
+<%= f.label :category_id, "category" %>
+</p>
+<p>
+<!-- map會將block內的參數轉爲二維數組 -->
+<!-- <%= f.select :category_id, Category.all.map{|x|[x.name,x.id]} %> -->
+
+<!-- collection_select與select方法相似，只是參數不同 -->
+<%= f.collection_select :category_id, Category.all, :id, :name, :prompt=>"please select" %>
+</p>
+
+<p>
+<%= f.label :group_ids, "Group" %>
+</p>
+<p>
+<%= f.collection_check_boxes :group_ids, Group.all, :id, :name %>
+</p>

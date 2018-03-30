@@ -1,0 +1,18 @@
+<h1>32</h1>
+
+<table class="table">
+	<% @attendees.each do |attendee| %>
+		<tr>
+			<td>
+				<%= attendee.name %>
+			</td>
+			<td>
+				<%= link_to "show", event_attendee_path(@event, attendee), :class=>"btn btn-primary" %>
+				<%= link_to "edit", edit_event_attendee_path(@event, attendee), :class=>"btn btn-default" %>
+				<%= link_to "delete", event_attendee_path(@event, attendee), :method=>"Delete", :class=>"btn btn-danger", :data=>{:confirm=>"Are You OK???", :disable_with => 'Removing'} %>
+			</td>
+		</tr>
+	<% end %>
+</table>
+<%= link_to "new", new_event_attendee_path(@event), :class=>"btn btn-primary" %>
+<%= link_to "back", events_path, :class=>"btn btn-default" %>

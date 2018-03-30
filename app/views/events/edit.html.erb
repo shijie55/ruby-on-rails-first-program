@@ -1,0 +1,14 @@
+<% if @event.errors.any? %>
+	<% @event.errors.full_messages.each do |error| %>
+		<p><%= error %></p>
+	<% end %>
+<% end %>
+
+<%= form_for @event do |f| %>
+	<!--  -->
+	<%= render :partial => "from" ,:locals=>{:f=>f}%>
+
+	<%= f.submit :update ,:class=>"btn btn-primary"%>
+	<!-- reset按鈕 -->
+	<%= button_tag "Cancel", type: :reset, :class=>"btn btn-default" %>
+<% end %>

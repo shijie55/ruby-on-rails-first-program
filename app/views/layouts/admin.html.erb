@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>DoBug</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+  <div class="container">
+    <div class="row">
+      <div class="col-mn-12">
+        <% if current_company %>
+          <%= link_to('登出', destroy_company_session_path, :method => :delete) %> |
+          <%= link_to('修改密码', edit_registration_path(:company)) %>
+        <% else %>
+          <%= link_to('注册', new_registration_path(:company)) %> |
+          <%= link_to('登入', new_session_path(:company)) %>
+        <% end %>
+      <h1>ADMIN</h1>
+        <p style="color: green"><%= flash[:notice] %></p>
+        <p style="color: red"><%= flash[:alert] %></p>
+        <%= yield %>
+      </div>
+    </div>
+  </div>
+  </body>
+</html>
