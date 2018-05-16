@@ -19,6 +19,19 @@ class EventsController < ApplicationController
 		    format.xml { render :xml => @events.to_xml }
 		    format.json { render :json => @events.to_json }
 		    format.atom { @feed_title = "My event list" } # index.atom.builder
+		    format.pdf do
+		        pdf = Prawn::Document.new
+		        @events.each do |event|
+		        	pdf.text event.name	
+		        end
+
+		        #send_data pdf.render #直接显示下载框
+		        # 会显示pdf页面
+		        send_data pdf.render,
+		                  filename: "order.pdf",
+		                  type: 'application/pdf',
+		                  disposition: 'inline'#根据这个来显示内联页面（pdf页面）
+		      end
   		end
 	end
 
@@ -95,7 +108,6 @@ class EventsController < ApplicationController
 				 e.update(:status => "published") 
 			end
 		end
-
 		redirect_back fallback_location: root_path
 	end
 

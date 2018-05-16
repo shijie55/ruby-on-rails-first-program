@@ -8,6 +8,14 @@ class Admin::EventsController < ApplicationController
 	layout "admin"
 
 	def index
+		puts '================='
+		puts ENV['test']
+		puts '================='
+
+		puts '================='
+		puts ENV['ONLY_STORY_DATABASE_USERNAME']
+		puts '================='
+
 		@events = Event.all		
 	end
 
